@@ -1,0 +1,54 @@
+ ArrayList<Carro> carros = new ArrayList<Carro>();       
+
+        Random r = new Random();
+        
+        for (int i = 0; i < 2; i++) {
+            System.out.println("Etapa " + (i+1) + " Da Corrida. ");
+            System.out.println("Tempo da volta: ");
+            if (i == 0) {
+                for(int x = 0; x< 20;x++){
+                    for(Carro b:carros){
+                        double a = r.nextDouble() * 20;
+                        b.addTempo(a);
+                    }
+                }
+                for(Carro b:carros) {
+                    System.out.println("Carro " + b.getId() + " tempo " +b.getTempo());
+                }
+                getWinnerFase1(carros);
+            }
+            if(i == 2){
+                for(Carro b:carros){
+                        double a = r.nextDouble() * 20;
+                        b.addTempo(a);
+                }
+            }
+            System.out.println("*****************************");
+        }
+        
+    }
+
+    public static void getWinnerFase1(ArrayList<Carro> carros) {
+
+        Carro winner = new Carro(99);
+        winner.setTempo(99999);
+
+        for(Carro b:carros){
+            if (b.getTempo() < winner.getTempo()) {
+                winner = b;
+            }
+        }
+
+        System.out.println("Vencedor: " + winner);
+    }
+
+    public static ArrayList<Carro> initCarros() throws IOException {
+
+        ArrayList<Carro> tmp = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            tmp.add(new Carro(i));
+        }
+
+        return tmp;
+    }
+    
